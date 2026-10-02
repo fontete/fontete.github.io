@@ -621,6 +621,21 @@
         padding-top: 16px;
       }
 
+      .card-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        min-height: 44px;
+        margin-top: 12px;
+        font-weight: 600;
+        font-size: 15px;
+        text-decoration: none;
+      }
+
+      .card-link:hover {
+        text-decoration: underline;
+      }
+
       .private-note {
         font-size: 14px;
         color: var(--text-muted);
@@ -983,7 +998,7 @@
                 <span class="badge-icon"><svg class="i" aria-hidden="true"><use href="#i-terminal" /></svg></span>
                 <div>
                   <h3>x-it</h3>
-                  <p class="meta" style="margin: 0">Developer tool · 2026</p>
+                  <p class="meta" style="margin: 0">Open source · MIT · 2026</p>
                 </div>
               </div>
               <p>
@@ -991,6 +1006,9 @@
                 skills and plugins, SSH hosts, port forwards, Docker and WireGuard. Loopback-only,
                 with a DNS-rebinding/CSRF guard and a backup before every config write.
               </p>
+              <a class="card-link" href="https://github.com/fontete/x-it" target="_blank" rel="noopener">
+                <svg class="i" aria-hidden="true"><use href="#i-github" /></svg>View source on GitHub
+              </a>
               <ul class="tags"><li>Go</li><li>React</li><li>Vite</li><li>Tailwind CSS</li></ul>
             </article>
 
@@ -998,7 +1016,7 @@
 
           <p class="private-note">
             <svg class="i" aria-hidden="true"><use href="#i-lock" /></svg>
-            These repositories are private. I'm happy to walk through the code in an interview.
+            The CRM and POSM tool are client work in private repositories. I'm happy to walk through the code in an interview.
           </p>
         </div>
       </section>
