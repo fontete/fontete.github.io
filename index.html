@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Phong Tran · Software Engineer</title>
+    <meta
+      name="description"
+      content="Phong Tran, full-stack software engineer in Ho Chi Minh City. TypeScript, NestJS, event-driven microservices, PostgreSQL, Kubernetes."
+    />
+    <meta property="og:title" content="Phong Tran · Software Engineer" />
+    <meta
+      property="og:description"
+      content="I build and run production TypeScript systems: event-driven microservices, data sync, integrations and Kubernetes operations."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://fontete.github.io/" />
+    <meta property="og:image" content="https://fontete.github.io/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://fontete.github.io/" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#0b1120" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Phong Tran",
+        "jobTitle": "Software Engineer",
+        "url": "https://fontete.github.io/",
+        "email": "mailto:phongttit99@gmail.com",
+        "address": { "@type": "PostalAddress", "addressLocality": "Ho Chi Minh City", "addressCountry": "VN" },
+        "alumniOf": "University of Greenwich",
+        "worksFor": { "@type": "Organization", "name": "FPT Information System" },
+        "sameAs": ["https://github.com/fontete", "https://www.linkedin.com/in/phong-tran-726472199"],
+        "knowsAbout": ["TypeScript", "NestJS", "Microservices", "PostgreSQL", "RabbitMQ", "Kubernetes"]
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      // Apply saved theme before paint to avoid a flash.
+      document.documentElement.classList.add('js');
+      try {
+        const saved = localStorage.getItem('theme');
+        if (saved) document.documentElement.dataset.theme = saved;
+      } catch (_) {}
+    </script>
+    <style>
+      :root {
+        --bg: #f8fafc;
+        --surface: #ffffff;
+        --surface-2: #f1f5f9;
+        --text: #0f172a;
+        --text-muted: #475569;
+        --border: #e2e8f0;
+        --accent: #15803d;
+        --accent-strong: #166534;
+        --accent-soft: rgba(21, 128, 61, 0.1);
+        --on-accent: #ffffff;
+        --shadow: 0 1px 2px rgba(15, 23, 42, 0.06), 0 8px 24px rgba(15, 23, 42, 0.06);
+        --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+        --sans: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+        --radius: 12px;
+        --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+        color-scheme: light;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme='light']) {
+          --bg: #0b1120;
+          --surface: #111a2e;
+          --surface-2: #17223a;
+          --text: #f1f5f9;
+          --text-muted: #a3b1c6;
+          --border: #24324d;
+          --accent: #4ade80;
+          --accent-strong: #86efac;
+          --accent-soft: rgba(74, 222, 128, 0.12);
+          --on-accent: #052e16;
+          --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 12px 32px rgba(0, 0, 0, 0.35);
+          color-scheme: dark;
+        }
+      }
+
+      :root[data-theme='dark'] {
+        --bg: #0b1120;
+        --surface: #111a2e;
+        --surface-2: #17223a;
+        --text: #f1f5f9;
+        --text-muted: #a3b1c6;
+        --border: #24324d;
+        --accent: #4ade80;
+        --accent-strong: #86efac;
+        --accent-soft: rgba(74, 222, 128, 0.12);
+        --on-accent: #052e16;
+        --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 12px 32px rgba(0, 0, 0, 0.35);
+        color-scheme: dark;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 80px;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--sans);
+        font-size: 16px;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+        color: var(--accent);
+        text-underline-offset: 3px;
+      }
+
+      :focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+        border-radius: 6px;
+      }
+
+      .skip {
+        position: absolute;
+        left: -9999px;
+      }
+
+      .skip:focus {
+        left: 16px;
+        top: 16px;
+        z-index: 100;
+        background: var(--surface);
+        padding: 8px 12px;
+      }
+
+      .wrap {
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 0 16px;
+      }
+
+      @media (min-width: 768px) {
+        .wrap {
+          padding: 0 32px;
+        }
+      }
+
+      /* ---------- Nav ---------- */
+      .nav {
+        position: sticky;
+        top: 0;
+        z-index: 40;
+        background: color-mix(in srgb, var(--bg) 85%, transparent);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav .wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 64px;
+        gap: 16px;
+      }
+
+      .logo {
+        font-family: var(--mono);
+        font-weight: 700;
+        color: var(--text);
+        text-decoration: none;
+        white-space: nowrap;
+      }
+
+      .logo span {
+        color: var(--accent);
+      }
+
+      .nav-links {
+        display: none;
+        gap: 24px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .nav-links a {
+        color: var(--text-muted);
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: 500;
+        transition: color 150ms var(--ease);
+      }
+
+      .nav-links a:hover {
+        color: var(--text);
+      }
+
+      @media (min-width: 860px) {
+        .nav-links {
+          display: flex;
+        }
+      }
+
+      .icon-btn {
+        display: inline-grid;
+        place-items: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        background: var(--surface);
+        color: var(--text);
+        cursor: pointer;
+        transition: border-color 150ms var(--ease);
+      }
+
+      .icon-btn:hover {
+        border-color: var(--accent);
+      }
+
+      svg.i {
+        width: 20px;
+        height: 20px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.75;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        flex-shrink: 0;
+      }
+
+      .theme-dark-icon {
+        display: none;
+      }
+
+      :root[data-theme='dark'] .theme-dark-icon {
+        display: block;
+      }
+
+      :root[data-theme='dark'] .theme-light-icon {
+        display: none;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme='light']) .theme-dark-icon {
+          display: block;
+        }
+        :root:not([data-theme='light']) .theme-light-icon {
+          display: none;
+        }
+      }
+
+      /* ---------- Hero ---------- */
+      .hero {
+        padding: 72px 0 56px;
+      }
+
+      .eyebrow {
+        font-family: var(--mono);
+        font-size: 14px;
+        color: var(--accent);
+        margin: 0 0 16px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--accent);
+        box-shadow: 0 0 0 4px var(--accent-soft);
+      }
+
+      h1 {
+        font-size: clamp(36px, 6vw, 60px);
+        line-height: 1.08;
+        letter-spacing: -0.02em;
+        margin: 0 0 20px;
+        text-wrap: balance;
+      }
+
+      h1 .muted {
+        color: var(--text-muted);
+      }
+
+      .lede {
+        font-size: clamp(17px, 2vw, 19px);
+        color: var(--text-muted);
+        max-width: 64ch;
+        margin: 0 0 32px;
+      }
+
+      .lede strong {
+        color: var(--text);
+        font-weight: 600;
+      }
+
+      .cta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        min-height: 44px;
+        padding: 10px 18px;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 15px;
+        text-decoration: none;
+        border: 1px solid var(--border);
+        color: var(--text);
+        background: var(--surface);
+        transition: border-color 150ms var(--ease), transform 150ms var(--ease);
+      }
+
+      .btn:hover {
+        border-color: var(--accent);
+      }
+
+      .btn:active {
+        transform: scale(0.98);
+      }
+
+      .btn.primary {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: var(--on-accent);
+      }
+
+      .btn.primary:hover {
+        background: var(--accent-strong);
+        border-color: var(--accent-strong);
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 48px;
+      }
+
+      @media (min-width: 768px) {
+        .stats {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+      }
+
+      .stat {
+        border: 1px solid var(--border);
+        background: var(--surface);
+        border-radius: var(--radius);
+        padding: 16px 18px;
+      }
+
+      .stat b {
+        display: block;
+        font-family: var(--mono);
+        font-size: 28px;
+        font-variant-numeric: tabular-nums;
+        line-height: 1.2;
+      }
+
+      .stat span {
+        color: var(--text-muted);
+        font-size: 14px;
+      }
+
+      /* ---------- Sections ---------- */
+      section.block {
+        padding: 56px 0;
+        border-top: 1px solid var(--border);
+      }
+
+      .section-head {
+        margin-bottom: 32px;
+      }
+
+      .section-head .kicker {
+        font-family: var(--mono);
+        font-size: 13px;
+        color: var(--accent);
+        margin: 0 0 8px;
+      }
+
+      h2 {
+        font-size: clamp(26px, 3.5vw, 34px);
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+        margin: 0 0 8px;
+      }
+
+      .section-head p {
+        color: var(--text-muted);
+        margin: 0;
+        max-width: 65ch;
+      }
+
+      h3 {
+        font-size: 20px;
+        margin: 0 0 6px;
+        line-height: 1.3;
+      }
+
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 24px;
+        box-shadow: var(--shadow);
+      }
+
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        list-style: none;
+        padding: 0;
+        margin: 12px 0 0;
+      }
+
+      .tags li {
+        font-family: var(--mono);
+        font-size: 12.5px;
+        padding: 3px 9px;
+        border-radius: 999px;
+        background: var(--surface-2);
+        border: 1px solid var(--border);
+        color: var(--text-muted);
+      }
+
+      .meta {
+        font-family: var(--mono);
+        font-size: 13px;
+        color: var(--text-muted);
+        margin: 0 0 12px;
+      }
+
+      ul.points {
+        margin: 12px 0 0;
+        padding-left: 20px;
+        color: var(--text-muted);
+      }
+
+      ul.points li {
+        margin-bottom: 6px;
+      }
+
+      ul.points strong {
+        color: var(--text);
+        font-weight: 600;
+      }
+
+      /* ---------- Case study ---------- */
+      .case {
+        display: grid;
+        gap: 24px;
+      }
+
+      @media (min-width: 960px) {
+        .case {
+          grid-template-columns: 1.05fr 1fr;
+          align-items: start;
+        }
+      }
+
+      .diagram {
+        background: var(--surface-2);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 16px;
+      }
+
+      .diagram svg {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .diagram figcaption {
+        font-size: 13px;
+        color: var(--text-muted);
+        margin-top: 8px;
+      }
+
+      .d-box {
+        fill: var(--surface);
+        stroke: var(--border);
+        stroke-width: 1.5;
+      }
+
+      .d-accent {
+        fill: var(--accent-soft);
+        stroke: var(--accent);
+        stroke-width: 1.5;
+      }
+
+      .d-text {
+        fill: var(--text);
+        font-family: var(--mono);
+        font-size: 12px;
+      }
+
+      .d-sub {
+        fill: var(--text-muted);
+        font-family: var(--sans);
+        font-size: 11px;
+      }
+
+      .d-line {
+        stroke: var(--text-muted);
+        stroke-width: 1.5;
+        fill: none;
+      }
+
+      .d-arrow {
+        fill: var(--text-muted);
+      }
+
+      .decisions {
+        display: grid;
+        gap: 12px;
+        margin-top: 24px;
+      }
+
+      @media (min-width: 768px) {
+        .decisions {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+      }
+
+      .decision {
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 18px;
+        background: var(--surface);
+      }
+
+      .decision h4 {
+        margin: 0 0 6px;
+        font-size: 16px;
+      }
+
+      .decision p {
+        margin: 0;
+        color: var(--text-muted);
+        font-size: 15px;
+      }
+
+      /* ---------- Projects ---------- */
+      .grid {
+        display: grid;
+        gap: 16px;
+      }
+
+      @media (min-width: 768px) {
+        .grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+      }
+
+      .project {
+        display: flex;
+        flex-direction: column;
+        transition: border-color 200ms var(--ease), transform 200ms var(--ease);
+      }
+
+      .project:hover {
+        border-color: color-mix(in srgb, var(--accent) 50%, var(--border));
+        transform: translateY(-2px);
+      }
+
+      .project .head {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 10px;
+      }
+
+      .badge-icon {
+        display: grid;
+        place-items: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        background: var(--accent-soft);
+        color: var(--accent);
+      }
+
+      .project p {
+        color: var(--text-muted);
+        margin: 0;
+      }
+
+      .project .tags {
+        margin-top: auto;
+        padding-top: 16px;
+      }
+
+      .private-note {
+        font-size: 14px;
+        color: var(--text-muted);
+        margin-top: 16px;
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+
+      /* ---------- Timeline ---------- */
+      .timeline {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        border-left: 2px solid var(--border);
+      }
+
+      .timeline > li {
+        position: relative;
+        padding: 0 0 32px 24px;
+      }
+
+      .timeline > li:last-child {
+        padding-bottom: 0;
+      }
+
+      .timeline > li::before {
+        content: '';
+        position: absolute;
+        left: -7px;
+        top: 6px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--bg);
+        border: 2px solid var(--accent);
+      }
+
+      .timeline h3 {
+        margin-bottom: 2px;
+      }
+
+      /* ---------- Skills ---------- */
+      .skills {
+        display: grid;
+        gap: 16px;
+      }
+
+      @media (min-width: 768px) {
+        .skills {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+      }
+
+      .skills h3 {
+        font-size: 16px;
+        font-family: var(--mono);
+        color: var(--accent);
+        font-weight: 500;
+      }
+
+      /* ---------- Process ---------- */
+      .steps {
+        display: grid;
+        gap: 16px;
+        counter-reset: step;
+      }
+
+      @media (min-width: 768px) {
+        .steps {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+      }
+
+      .step {
+        counter-increment: step;
+      }
+
+      .step::before {
+        content: '0' counter(step);
+        display: block;
+        font-family: var(--mono);
+        color: var(--accent);
+        font-size: 14px;
+        margin-bottom: 8px;
+      }
+
+      .step h3 {
+        font-size: 17px;
+      }
+
+      .step p {
+        margin: 0;
+        color: var(--text-muted);
+        font-size: 15px;
+      }
+
+      /* ---------- Contact ---------- */
+      .contact {
+        text-align: left;
+      }
+
+      .contact .cta-row {
+        margin-top: 24px;
+      }
+
+      footer {
+        border-top: 1px solid var(--border);
+        padding: 24px 0 40px;
+        color: var(--text-muted);
+        font-size: 14px;
+      }
+
+      /* ---------- Motion ---------- */
+      .js .reveal {
+        opacity: 0;
+        transform: translateY(12px);
+        transition: opacity 400ms var(--ease), transform 400ms var(--ease);
+      }
+
+      .js .reveal.in {
+        opacity: 1;
+        transform: none;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        .js .reveal,
+        .js .reveal.in {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+        .project:hover {
+          transform: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+      <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2" /><path d="m22 7-10 6L2 7" /></symbol>
+      <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><path d="M14 2v6h6M12 18v-6M9 15l3 3 3-3" /></symbol>
+      <symbol id="i-github" viewBox="0 0 24 24"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65S8.93 17.38 9 18v4" /><path d="M9 18c-4.51 2-5-2-7-2" /></symbol>
+      <symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" /><rect x="2" y="9" width="4" height="12" /><circle cx="4" cy="4" r="2" /></symbol>
+      <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" /></symbol>
+      <symbol id="i-moon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" /></symbol>
+      <symbol id="i-stethoscope" viewBox="0 0 24 24"><path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6 6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3" /><path d="M8 15v1a6 6 0 0 0 6 6 6 6 0 0 0 6-6v-4" /><circle cx="20" cy="10" r="2" /></symbol>
+      <symbol id="i-printer" viewBox="0 0 24 24"><path d="M6 9V2h12v7" /><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" /><rect x="6" y="14" width="12" height="8" /></symbol>
+      <symbol id="i-terminal" viewBox="0 0 24 24"><path d="m4 17 6-6-6-6M12 19h8" /></symbol>
+      <symbol id="i-lock" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" /></symbol>
+    </svg>
+
+    <header class="nav">
+      <div class="wrap">
+        <a class="logo" href="#top">phong<span>.</span>tran</a>
+        <nav aria-label="Primary">
+          <ul class="nav-links">
+            <li><a href="#work">Work</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#how">How I work</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+        <button class="icon-btn" id="theme" type="button" aria-label="Toggle dark mode">
+          <svg class="i theme-light-icon" aria-hidden="true"><use href="#i-moon" /></svg>
+          <svg class="i theme-dark-icon" aria-hidden="true"><use href="#i-sun" /></svg>
+        </button>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- ================= HERO ================= -->
+      <section class="hero" id="top">
+        <div class="wrap">
+          <p class="eyebrow"><span class="dot" aria-hidden="true"></span>Software Engineer · Ho Chi Minh City</p>
+          <h1>Phong Tran.<br /><span class="muted">I build backend systems and keep them running in production.</span></h1>
+          <p class="lede">
+            5+ years at <strong>FPT Information System</strong> building a multi-tenant
+            recruitment SaaS of <strong>30+ NestJS microservices</strong> for banks, securities
+            firms and retailers. I own features from the technical spec to a verified
+            production rollout: event-driven workflows, data sync, third-party
+            integrations and Kubernetes operations.
+          </p>
+          <div class="cta-row">
+            <a class="btn primary" href="mailto:phongttit99@gmail.com">
+              <svg class="i" aria-hidden="true"><use href="#i-mail" /></svg>Get in touch
+            </a>
+            <a class="btn" href="Phong-Tran-CV.pdf" download>
+              <svg class="i" aria-hidden="true"><use href="#i-file" /></svg>Download CV
+            </a>
+            <a class="btn" href="https://www.linkedin.com/in/phong-tran-726472199" target="_blank" rel="noopener">
+              <svg class="i" aria-hidden="true"><use href="#i-linkedin" /></svg>LinkedIn
+            </a>
+            <a class="btn" href="https://github.com/fontete" target="_blank" rel="noopener">
+              <svg class="i" aria-hidden="true"><use href="#i-github" /></svg>GitHub
+            </a>
+          </div>
+
+          <div class="stats">
+            <div class="stat"><b>5+ yrs</b><span>production TypeScript</span></div>
+            <div class="stat"><b>30+</b><span>microservices in one platform</span></div>
+            <div class="stat"><b>9</b><span>enterprise clients in production</span></div>
+            <div class="stat"><b>K8s</b><span>deploy, rollout and live debugging</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= CASE STUDY ================= -->
+      <section class="block" id="work">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <p class="kicker">// featured work</p>
+            <h2>FPT eHiring: a multi-tenant recruitment platform</h2>
+            <p>
+              An applicant tracking system deployed separately for each client: Shinhan Bank,
+              Shinhan Life, Shinhan Finance, SHB, Vietbank, HSC, Y4A, Decathlon and Tan Long Group.
+            </p>
+          </div>
+
+          <div class="case">
+            <figure class="diagram reveal" style="margin: 0">
+              <svg viewBox="0 0 520 360" role="img" aria-labelledby="dg-title dg-desc">
+                <title id="dg-title">eHiring architecture</title>
+                <desc id="dg-desc">
+                  Angular micro-frontends call NestJS API services that resolve the tenant and
+                  authenticate with Keycloak. API services publish jobs over NATS and RabbitMQ to
+                  background workers, which call external systems such as VOffice e-sign and HR
+                  systems. Data lives in per-tenant MongoDB and is synced into PostgreSQL for the
+                  HR dashboard.
+                </desc>
+                <defs>
+                  <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                    <path class="d-arrow" d="M0 0 10 5 0 10z" />
+                  </marker>
+                </defs>
+                <!-- row 1 -->
+                <rect class="d-box" x="20" y="16" width="220" height="54" rx="8" />
+                <text class="d-text" x="34" y="40">Angular micro-frontends</text>
+                <text class="d-sub" x="34" y="58">30+ lazy-loaded feature libs</text>
+                <rect class="d-box" x="280" y="16" width="220" height="54" rx="8" />
+                <text class="d-text" x="294" y="40">Keycloak (OIDC)</text>
+                <text class="d-sub" x="294" y="58">JWT · JWKS · per-tenant realm</text>
+                <!-- row 2 -->
+                <rect class="d-accent" x="20" y="110" width="480" height="58" rx="8" />
+                <text class="d-text" x="34" y="134">NestJS API services (one per domain)</text>
+                <text class="d-sub" x="34" y="153">tenant from hostname / x-tenant · guards · audit interceptor</text>
+                <!-- row 3 -->
+                <rect class="d-box" x="20" y="208" width="220" height="54" rx="8" />
+                <text class="d-text" x="34" y="232">NATS + RabbitMQ</text>
+                <text class="d-sub" x="34" y="250">request-reply · pub/sub · jobs</text>
+                <rect class="d-box" x="280" y="208" width="220" height="54" rx="8" />
+                <text class="d-text" x="294" y="232">Background workers</text>
+                <text class="d-sub" x="294" y="250">email · CV parse · export · cron</text>
+                <!-- row 4 -->
+                <rect class="d-box" x="20" y="296" width="140" height="50" rx="8" />
+                <text class="d-text" x="32" y="318">MongoDB</text>
+                <text class="d-sub" x="32" y="335">per tenant</text>
+                <rect class="d-accent" x="190" y="296" width="140" height="50" rx="8" />
+                <text class="d-text" x="202" y="318">PostgreSQL</text>
+                <text class="d-sub" x="202" y="335">dashboard sync</text>
+                <rect class="d-box" x="360" y="296" width="140" height="50" rx="8" />
+                <text class="d-text" x="372" y="318">External APIs</text>
+                <text class="d-sub" x="372" y="335">e-sign · HR · webhooks</text>
+                <!-- arrows -->
+                <path class="d-line" d="M130 70v38" marker-end="url(#arr)" />
+                <path class="d-line" d="M390 70v38" marker-end="url(#arr)" />
+                <path class="d-line" d="M130 168v38" marker-end="url(#arr)" />
+                <path class="d-line" d="M240 235h38" marker-end="url(#arr)" />
+                <path class="d-line" d="M90 262v32" marker-end="url(#arr)" />
+                <path class="d-line" d="M160 321h28" marker-end="url(#arr)" />
+                <path class="d-line" d="M430 262v32" marker-end="url(#arr)" />
+              </svg>
+              <figcaption>Simplified view. Each client runs its own deployment on Kubernetes or Docker Swarm.</figcaption>
+            </figure>
+
+            <div class="card reveal">
+              <p class="meta">2022 – present · Full-stack engineer &amp; system operator</p>
+              <h3>What I built and own</h3>
+              <ul class="points">
+                <li><strong>Event-driven workflows</strong> on NATS and RabbitMQ for email, CV parsing, document export and integrations, with API services split from workers.</li>
+                <li><strong>MongoDB → PostgreSQL sync</strong> for the HR dashboard: batched, incremental, idempotent upserts with per-record retry.</li>
+                <li><strong>VOffice e-signature integration</strong> with webhook status updates and recovery of in-flight jobs after pod restarts.</li>
+                <li><strong>Tenant isolation</strong> with Keycloak OIDC, hostname / header tenant resolution and per-tenant databases.</li>
+                <li><strong>Operations</strong>: Docker images, Helm, ConfigMaps/Secrets, rollouts, and live debugging with pod logs and OpenTelemetry traces.</li>
+              </ul>
+              <ul class="tags" aria-label="Tech used">
+                <li>NestJS</li><li>Angular</li><li>Nx</li><li>NATS</li><li>RabbitMQ</li><li>MongoDB</li><li>PostgreSQL</li><li>Keycloak</li><li>Kubernetes</li><li>OpenTelemetry</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="decisions">
+            <div class="decision reveal">
+              <h4>One bad record never blocks a sync</h4>
+              <p>Upserts use <code>ON CONFLICT DO UPDATE</code>, so a re-run is safe. Failed records are retried and skipped, not allowed to fail the batch.</p>
+            </div>
+            <div class="decision reveal">
+              <h4>Jobs survive a pod restart</h4>
+              <p>E-sign monitoring state lives in the database, and cron jobs rebuild it on boot instead of relying on memory.</p>
+            </div>
+            <div class="decision reveal">
+              <h4>Errors are classified, not just logged</h4>
+              <p>Transient errors are retried with backoff. Permanent errors are recorded with a reason the support team can act on.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= PROJECTS ================= -->
+      <section class="block" id="projects">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <p class="kicker">// independent work</p>
+            <h2>Things I've built outside the day job</h2>
+            <p>Freelance and personal products, each designed, built, tested and deployed by me.</p>
+          </div>
+
+          <div class="grid">
+            <article class="card project reveal">
+              <div class="head">
+                <span class="badge-icon"><svg class="i" aria-hidden="true"><use href="#i-stethoscope" /></svg></span>
+                <div>
+                  <h3>Clinic CRM &amp; Operations</h3>
+                  <p class="meta" style="margin: 0">Freelance · 2026</p>
+                </div>
+              </div>
+              <p>
+                Eight NestJS services behind a JWT/RBAC gateway, talking over RabbitMQ. CRM,
+                appointments, medical records, payments, invoices and memberships, with an async
+                audit trail, inbound lead connectors (Getfly, Pancake) and an LLM copilot that falls
+                back gracefully when the provider is down.
+              </p>
+              <ul class="tags"><li>NestJS</li><li>RabbitMQ</li><li>PostgreSQL</li><li>Prisma</li><li>MongoDB</li><li>React</li><li>Playwright</li></ul>
+            </article>
+
+            <article class="card project reveal">
+              <div class="head">
+                <span class="badge-icon"><svg class="i" aria-hidden="true"><use href="#i-printer" /></svg></span>
+                <div>
+                  <h3>POSM Resize Tool</h3>
+                  <p class="meta" style="margin: 0">Commercial desktop app · 2026</p>
+                </div>
+              </div>
+              <p>
+                Turns monthly Excel order sheets into print-ready PDF, PDF/X-1a and SVG banners,
+                replacing hours of manual Illustrator work. Ships to Windows and macOS from CI, with
+                online license activation through a Flask key server.
+              </p>
+              <ul class="tags"><li>Python</li><li>Flask</li><li>MongoDB</li><li>pytest</li><li>GitHub Actions</li></ul>
+            </article>
+
+            <article class="card project reveal">
+              <div class="head">
+                <span class="badge-icon"><svg class="i" aria-hidden="true"><use href="#i-terminal" /></svg></span>
+                <div>
+                  <h3>x-it</h3>
+                  <p class="meta" style="margin: 0">Developer tool · 2026</p>
+                </div>
+              </div>
+              <p>
+                A single Go binary with an embedded React UI that manages Claude Code profiles,
+                skills and plugins, SSH hosts, port forwards, Docker and WireGuard. Loopback-only,
+                with a DNS-rebinding/CSRF guard and a backup before every config write.
+              </p>
+              <ul class="tags"><li>Go</li><li>React</li><li>Vite</li><li>Tailwind CSS</li></ul>
+            </article>
+
+          </div>
+
+          <p class="private-note">
+            <svg class="i" aria-hidden="true"><use href="#i-lock" /></svg>
+            These repositories are private. I'm happy to walk through the code in an interview.
+          </p>
+        </div>
+      </section>
+
+      <!-- ================= EXPERIENCE ================= -->
+      <section class="block" id="experience">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <p class="kicker">// experience</p>
+            <h2>Where I've worked</h2>
+          </div>
+          <ol class="timeline">
+            <li class="reveal">
+              <h3>Software Engineer, Full-Stack &amp; System Operations</h3>
+              <p class="meta">FPT Information System · Apr 2021 – present</p>
+              <ul class="points">
+                <li><strong>FPT eHiring</strong> (2022 – present): multi-tenant ATS, see above.</li>
+                <li><strong>HR Analytics Dashboard</strong> (2023 – present): NestJS aggregation APIs and Angular/ECharts drill-down views over PostgreSQL and MongoDB.</li>
+                <li><strong>Violation Detection System</strong> (2021 – 2022): rule-based traffic violation detection over InfluxDB time-series data.</li>
+                <li>Also: Binh Dinh traffic estimation, real-time device monitoring map, Excel export service. Coordinated a 5-person sub-team.</li>
+              </ul>
+            </li>
+            <li class="reveal">
+              <h3>Software Engineer Intern, Back-End</h3>
+              <p class="meta">FPT Information System · Oct 2019 – Jan 2021</p>
+              <ul class="points">
+                <li>REST APIs in Node.js (Express, NestJS) for traffic management and vehicle tracking, on InfluxDB and MongoDB.</li>
+              </ul>
+            </li>
+            <li class="reveal">
+              <h3>BSc in Computing</h3>
+              <p class="meta">University of Greenwich · 2017 – 2021</p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- ================= SKILLS ================= -->
+      <section class="block" id="skills">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <p class="kicker">// toolbox</p>
+            <h2>What I work with</h2>
+          </div>
+          <div class="skills">
+            <div class="card reveal">
+              <h3>backend &amp; data</h3>
+              <ul class="tags"><li>TypeScript</li><li>Node.js</li><li>NestJS</li><li>PostgreSQL</li><li>Prisma</li><li>MongoDB</li><li>Redis</li><li>NATS</li><li>RabbitMQ</li><li>Python</li><li>Go</li></ul>
+            </div>
+            <div class="card reveal">
+              <h3>operations</h3>
+              <ul class="tags"><li>Docker</li><li>Kubernetes</li><li>Helm</li><li>Docker Swarm</li><li>GitHub Actions</li><li>OpenTelemetry</li><li>Nginx</li><li>Linux</li></ul>
+            </div>
+            <div class="card reveal">
+              <h3>frontend &amp; tooling</h3>
+              <ul class="tags"><li>Angular</li><li>React</li><li>Next.js</li><li>RxJS</li><li>ECharts</li><li>Nx</li><li>Playwright</li><li>Claude Code</li><li>Cursor</li><li>Local LLMs</li></ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= HOW I WORK ================= -->
+      <section class="block" id="how">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <p class="kicker">// how I work</p>
+            <h2>Plan first. Use AI to go faster. Done means verified in production.</h2>
+            <p>
+              I adopted AI coding tools as soon as they were good enough for production work, and they now
+              shorten every stage of my workflow: Claude Code and Cursor for day-to-day building, and local
+              LLMs when client code must stay on-premise. The tools write code faster; they don't decide what
+              to build or tell me when they're wrong.
+            </p>
+          </div>
+          <div class="steps">
+            <div class="card step reveal">
+              <h3>Spec before code</h3>
+              <p>Data model, service boundaries, failure cases and acceptance criteria come first. AI helps me draft and challenge the spec, not skip it.</p>
+            </div>
+            <div class="card step reveal">
+              <h3>Build in small steps</h3>
+              <p>Claude Code or Cursor scaffolds each task. I read every change line by line, looking for invented fields and missing tenant checks.</p>
+            </div>
+            <div class="card step reveal">
+              <h3>Tests that can fail</h3>
+              <p>AI drafts the cases; I make sure each one would fail if the behaviour were wrong. The merge request lists what I checked.</p>
+            </div>
+            <div class="card step reveal">
+              <h3>Verify in production</h3>
+              <p>Deploy, then use AI to triage logs and traces faster. Confirm it works for real users and write up what broke.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= CONTACT ================= -->
+      <section class="block contact" id="contact">
+        <div class="wrap reveal">
+          <p class="kicker" style="font-family: var(--mono); color: var(--accent); font-size: 13px; margin: 0 0 8px">// contact</p>
+          <h2>Let's talk</h2>
+          <p style="color: var(--text-muted); max-width: 60ch; margin: 0">
+            I'm open to backend and full-stack roles where engineers own their features end to end.
+            Email is the fastest way to reach me.
+          </p>
+          <div class="cta-row">
+            <a class="btn primary" href="mailto:phongttit99@gmail.com">
+              <svg class="i" aria-hidden="true"><use href="#i-mail" /></svg>phongttit99@gmail.com
+            </a>
+            <a class="btn" href="Phong-Tran-CV.pdf" download>
+              <svg class="i" aria-hidden="true"><use href="#i-file" /></svg>Download CV (PDF)
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="wrap">© <span id="year">2026</span> Phong Tran · Ho Chi Minh City, Vietnam</div>
+    </footer>
+
+    <script>
+      (function () {
+        const root = document.documentElement;
+        const prefersDark = () => window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const current = () => root.dataset.theme || (prefersDark() ? 'dark' : 'light');
+
+        document.getElementById('theme').addEventListener('click', function () {
+          const next = current() === 'dark' ? 'light' : 'dark';
+          root.dataset.theme = next;
+          try {
+            localStorage.setItem('theme', next);
+          } catch (_) {}
+        });
+
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        const items = document.querySelectorAll('.reveal');
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduce || !('IntersectionObserver' in window)) {
+          items.forEach((el) => el.classList.add('in'));
+          return;
+        }
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                e.target.classList.add('in');
+                io.unobserve(e.target);
+              }
+            });
+          },
+          { rootMargin: '0px 0px -8% 0px' }
+        );
+        items.forEach((el) => io.observe(el));
+      })();
+    </script>
+  </body>
+</html>
