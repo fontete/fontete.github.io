@@ -447,6 +447,13 @@
         color: var(--text-muted);
       }
 
+      .tags li.hl {
+        background: var(--accent-soft);
+        border-color: var(--accent);
+        color: var(--accent-strong);
+        font-weight: 600;
+      }
+
       .meta {
         font-family: var(--mono);
         font-size: 13px;
@@ -987,10 +994,11 @@
                 </div>
               </div>
               <p>
-                Turns monthly Excel order sheets into print-ready PDF, PDF/X-1a and SVG banners,
-                replacing hours of manual Illustrator work. Ships to Windows and macOS from CI, with
-                online license activation through a Flask key server.
+                Turns a monthly Excel order sheet into one print-ready banner per shop: CMYK
+                500&nbsp;ppi TIFF for the print floor, plus PDF, PDF/X-1a, AI, EPS and SVG. Ships to
+                Windows and macOS from CI, with online license activation through a Flask key server.
               </p>
+              <a class="card-link" href="#posm">How it works for print shops →</a>
               <a class="card-link" href="https://sprint.fontete.com/download" target="_blank" rel="noopener">
                 <svg class="i" aria-hidden="true"><use href="#i-download" /></svg>Download the app
               </a>
@@ -1022,6 +1030,102 @@
             <svg class="i" aria-hidden="true"><use href="#i-lock" /></svg>
             The CRM and POSM tool are client work in private repositories. I'm happy to walk through the code in an interview.
           </p>
+        </div>
+      </section>
+
+      <!-- ================= POSM CASE STUDY ================= -->
+      <section class="block" id="posm">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <p class="kicker">// product spotlight</p>
+            <h2>POSM Resize Tool: from Excel order to print-ready TIFF</h2>
+            <p>
+              Every POSM campaign, a retail chain sends the print shop one Excel sheet: hundreds of
+              shops, each with its own banner width and height. A designer used to resize, label and
+              export every file by hand in Illustrator. This app does the whole order in one run.
+            </p>
+          </div>
+
+          <div class="case">
+            <figure class="diagram reveal" style="margin: 0">
+              <svg viewBox="0 0 520 360" role="img" aria-labelledby="posm-title posm-desc">
+                <title id="posm-title">POSM Resize Tool pipeline</title>
+                <desc id="posm-desc">
+                  The app reads the Excel order sheet and the banner template, picks the master
+                  banner with the closest aspect ratio for each shop, resizes it to the exact size
+                  and adds a shop-name strip, then exports TIFF, PDF or other formats with a resize
+                  log.
+                </desc>
+                <!-- row 1 -->
+                <rect class="d-box" x="20" y="16" width="220" height="54" rx="8" />
+                <text class="d-text" x="34" y="40">Excel order sheet</text>
+                <text class="d-sub" x="34" y="58">one row per shop · W × H in m</text>
+                <rect class="d-box" x="280" y="16" width="220" height="54" rx="8" />
+                <text class="d-text" x="294" y="40">Template .ai / .svg</text>
+                <text class="d-sub" x="294" y="58">library of master banners</text>
+                <!-- row 2 -->
+                <rect class="d-accent" x="20" y="110" width="480" height="58" rx="8" />
+                <text class="d-text" x="34" y="134">Pick master by closest aspect ratio</text>
+                <text class="d-sub" x="34" y="153">distortion % per shop · WARN above 5% · bad rows skipped</text>
+                <!-- row 3 -->
+                <rect class="d-box" x="20" y="208" width="480" height="54" rx="8" />
+                <text class="d-text" x="34" y="232">Resize to exact size, label the shop</text>
+                <text class="d-sub" x="34" y="250">1:10 scale · 2 cm shop-name strip · size in file name</text>
+                <!-- row 4 -->
+                <rect class="d-accent" x="20" y="296" width="140" height="50" rx="8" />
+                <text class="d-text" x="32" y="318">TIFF</text>
+                <text class="d-sub" x="32" y="335">CMYK · 500 ppi · LZW</text>
+                <rect class="d-box" x="190" y="296" width="140" height="50" rx="8" />
+                <text class="d-text" x="202" y="318">PDF · PDF/X-1a</text>
+                <text class="d-sub" x="202" y="335">no Illustrator needed</text>
+                <rect class="d-box" x="360" y="296" width="140" height="50" rx="8" />
+                <text class="d-text" x="372" y="318">AI · EPS · SVG</text>
+                <text class="d-sub" x="372" y="335">edit · legacy RIP</text>
+                <!-- arrows -->
+                <path class="d-line" d="M130 70v38" marker-end="url(#arr)" />
+                <path class="d-line" d="M390 70v38" marker-end="url(#arr)" />
+                <path class="d-line" d="M260 168v38" marker-end="url(#arr)" />
+                <path class="d-line" d="M90 262v32" marker-end="url(#arr)" />
+                <path class="d-line" d="M260 262v32" marker-end="url(#arr)" />
+                <path class="d-line" d="M430 262v32" marker-end="url(#arr)" />
+              </svg>
+              <figcaption>Each export also writes resize_log.txt: which master each shop used and how much it was stretched.</figcaption>
+            </figure>
+
+            <div class="card reveal">
+              <p class="meta">2026 · Designed, built and shipped by me</p>
+              <h3>What it gives a print shop</h3>
+              <ul class="points">
+                <li><strong>A whole order in one run</strong> instead of resizing every shop by hand, one file per shop.</li>
+                <li><strong>No retyping:</strong> shop name and real size go straight from Excel into the file name, e.g. <code>LC HNI 01 - 450 x 70 - Campaign.tif</code>.</li>
+                <li><strong>No guessing which master to stretch:</strong> the closest aspect ratio wins, and every file reports its distortion.</li>
+                <li><strong>Errors caught before printing:</strong> rows with missing or out-of-range sizes are skipped and listed in a report.</li>
+                <li><strong>Labelled output:</strong> a 2 cm strip with the shop name and size, so the floor can sort printed banners.</li>
+                <li><strong>Runs without a designer:</strong> an operator picks the Excel file and template, then clicks Export.</li>
+              </ul>
+              <ul class="tags" aria-label="Output formats">
+                <li class="hl">TIFF</li><li>PDF</li><li>PDF/X-1a</li><li>AI</li><li>EPS</li><li>SVG</li>
+              </ul>
+              <ul class="tags" aria-label="Input formats">
+                <li>.xlsx</li><li>.xls</li><li>.ai</li><li>.svg</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="decisions">
+            <div class="decision reveal">
+              <h4>TIFF built to the print shop's spec</h4>
+              <p>CMYK, not RGB, at 500&nbsp;ppi with Art Optimized anti-aliasing, so text and logos stay sharp at full size and colours are not converted at the RIP. Most large-format printers and RIPs take TIFF directly.</p>
+            </div>
+            <div class="decision reveal">
+              <h4>Light files, real sizes</h4>
+              <p>Files are exported at 1:10 with lossless LZW compression: an 800 × 70 cm banner becomes an 80.2 × 7 cm TIFF that sends fast and is scaled back up at the RIP. No ICC profile is embedded, so the shop applies the profile for its own machine and media.</p>
+            </div>
+            <div class="decision reveal">
+              <h4>Works with or without Illustrator</h4>
+              <p>With Illustrator installed, the app drives it to export TIFF, AI and EPS. Without it, a native Python renderer still exports PDF, PDF/X-1a and SVG from an .svg template.</p>
+            </div>
+          </div>
         </div>
       </section>
 
